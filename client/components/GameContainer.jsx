@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 
-class App extends Component {
+class GameContainer extends Component {
   constructor(props) {
     super(props);
   }
   render() {
     return (
       <div>
-        <h1>Math Game</h1>
-        <p>Hello world. I made it</p>
+        {/* ProblemDisplay */}
+        {/* UserInputContainer */}
       </div>
     )
   }
 }
 
-export default App;
+export default GameContainer;
