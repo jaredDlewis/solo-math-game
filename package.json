@@ -1,0 +1,42 @@
+{
+  "name": "solo-math-game",
+  "version": "1.0.0",
+  "description": "A game to help you practice mental math.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/server.js",
+    "build": "NODE_ENV=production webpack",
+    "dev": "NODE_ENV=development nodemon server/server.js & webpack serve --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaredDlewis/solo-math-game.git"
+  },
+  "author": "Jared Lewis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaredDlewis/solo-math-game/issues"
+  },
+  "homepage": "https://github.com/jaredDlewis/solo-math-game#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.49.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "concurrently": "^6.2.1",
+    "css-loader": "^6.2.0",
+    "nodemon": "^2.0.12",
+    "sass": "^1.37.5",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
