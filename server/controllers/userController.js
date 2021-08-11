@@ -47,9 +47,10 @@ userController.verifyUser = (req, res, next) => {
   db.query(queryStr, username)
     .then((results) => {
       if (results.rows.length === 0) {
-        res.locals.verifyResponse = 'The inputted username does not exist in our system. Please check your spelling or sign up.'
+        res.locals.verifyResponse = 'The inputted username does not exist in our system. Please check your spelling or sign up.';
+        return next();
       }
-      bcrypt.compare(req.body.password, results.rows.password, (err, result) => {
+      bcrypt.compare(req.body.password, results.rows[0].password, (err, result) => {
         if (err) return next('Error in userController.verifyUser: ' + JSON.stringify(err));
         if (!result) {
           res.locals.verifyResponse = 'Incorrect password. Please try again.';

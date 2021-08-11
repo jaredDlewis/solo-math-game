@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MainPage from './MainPage.jsx';
-import LoginPage from '../login/LoginPage.jsx';
+import LoginPage from './LoginPage.jsx';
 
 const mapStateToProps = state => ({
   currentPage: state.app.currentPage

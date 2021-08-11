@@ -23,7 +23,7 @@ const UserInputContainer = (props) => {
     return (
       <div>
         <h4>
-          <input autoComplete='off' type='text' id='userInput' onKeyDown={textEnterHandler}></input>
+          <input className="inputBox" autoComplete='off' type='text' id='userInput' onKeyDown={textEnterHandler}></input>
           <button type='button' onClick={handleClick}>Submit Answer</button>
         </h4>
       </div>
