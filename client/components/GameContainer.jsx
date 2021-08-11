@@ -28,8 +28,8 @@ const GameContainer = (props) => {
         gameMessage={props.gameMessage}
       />
       <UserInputContainer
+        firstNumber={props.firstNumber} 
         secondNumber={props.secondNumber}
-        answer={props.answer} 
         addToScoreActionCreator={props.addToScoreActionCreator} 
         generateProblemActionCreator={props.generateProblemActionCreator}
         respondToSubmissionActionCreator={props.respondToSubmissionActionCreator}

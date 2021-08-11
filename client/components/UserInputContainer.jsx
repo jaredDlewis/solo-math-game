@@ -10,7 +10,7 @@ const UserInputContainer = (props) => {
   function handleClick() {
     const input = document.getElementById('userInput').value;
     document.getElementById('userInput').value = '';
-    if (input === '' || Number(input) !== props.answer) {
+    if (input === '' || Number(input) !== props.firstNumber + props.secondNumber) {
       props.respondToSubmissionActionCreator('Try Again!');
       return;
     }
