@@ -1,16 +1,20 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-  firstNumber: 5,
+  firstNumber: null,
   secondNumber: null,
   answer: null,
-  operation: 'addition'
+  score: 0,
+  gameMessage: 'Submit Answer Below' // ABOUT TO HANDLE RIGHT OR WRONG FEEDBACK!!!
 };
 
 const mathReducer = (state = initialState, action) => {
   let firstNumber;
   let secondNumber;
   let answer;
+  let score;
+  let gameMessage;
+
   switch (action.type) {
     case types.GENERATE_PROBLEM: {
       firstNumber = Math.floor(Math.random() * 10);
@@ -21,6 +25,20 @@ const mathReducer = (state = initialState, action) => {
         firstNumber,
         secondNumber,
         answer
+      }
+    }
+    case types.ADD_TO_SCORE: {
+      score = state.score + 1;
+      return {
+        ...state,
+        score
+      }
+    }
+    case types.REPSOND_TO_SUBMISSION: {
+      gameMessage = action.payload;
+      return {
+        ...state,
+        gameMessage
       }
     }
     default: {

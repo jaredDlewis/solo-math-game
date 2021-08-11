@@ -1,0 +1,1 @@
+ALTER TABLE public.users ADD "past_scores" integer;
