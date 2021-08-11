@@ -11,7 +11,7 @@ SET row_security = off;
 
 CREATE TABLE public.users (
   "_id" serial NOT NULL,
-  "username" varchar NOT NULL,
+  "username" varchar NOT NULL UNIQUE,
   "password" varchar NOT NULL,
   "high_score" integer,
   CONSTRAINT "users_pk" PRIMARY KEY ("_id")
@@ -19,4 +19,4 @@ CREATE TABLE public.users (
   OIDS=FALSE
 );
 
-INSERT INTO public.users VALUES (1, 'firstUser', 'stringpassword', 12);
+INSERT INTO public.users (username, password, high_score) VALUES ('firstUser', 'stringpassword', 12);

@@ -6,7 +6,6 @@ const initialState = {
   answer: null,
   score: 0,
   gameMessage: 'Submit Answer Below',
-  currentPage: 'main' 
 };
 
 const mathReducer = (state = initialState, action) => {
@@ -38,13 +37,6 @@ const mathReducer = (state = initialState, action) => {
       return {
         ...state,
         gameMessage
-      }
-    }
-    case types.CHANGE_PAGE: {
-      currentPage = action.payload;
-      return {
-        ...state,
-        currentPage
       }
     }
     default: {
