@@ -5,7 +5,8 @@ const initialState = {
   secondNumber: null,
   answer: null,
   score: 0,
-  gameMessage: 'Submit Answer Below' // ABOUT TO HANDLE RIGHT OR WRONG FEEDBACK!!!
+  gameMessage: 'Submit Answer Below',
+  currentPage: 'main' 
 };
 
 const mathReducer = (state = initialState, action) => {
@@ -13,6 +14,7 @@ const mathReducer = (state = initialState, action) => {
   let secondNumber;
   let score;
   let gameMessage;
+  let currentPage;
 
   switch (action.type) {
     case types.GENERATE_PROBLEM: {
@@ -36,6 +38,13 @@ const mathReducer = (state = initialState, action) => {
       return {
         ...state,
         gameMessage
+      }
+    }
+    case types.CHANGE_PAGE: {
+      currentPage = action.payload;
+      return {
+        ...state,
+        currentPage
       }
     }
     default: {

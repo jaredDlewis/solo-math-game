@@ -1,6 +1,10 @@
 import React from 'react';
-import { generateProblemActionCreator, addToScoreActionCreator, respondToSubmissionActionCreator } from '../actions/actions';
-import { connect } from 'react-redux'
+import { 
+  generateProblemActionCreator, 
+  addToScoreActionCreator, 
+  respondToSubmissionActionCreator,
+} from '../actions/actions';
+import { connect } from 'react-redux';
 import ProblemDisplay from './ProblemDisplay.jsx';
 import UserInputContainer from './UserInputContainer.jsx';
 

@@ -1,15 +1,24 @@
 import React from 'react';
-import GameContainer from './GameContainer.jsx';
-import LoginButton from './LoginButton.jsx';
+import { connect } from 'react-redux';
+import MainPage from './MainPage.jsx';
+import LoginPage from '../login/LoginPage.jsx';
+
+const mapStateToProps = state => ({
+  currentPage: state.math.currentPage
+})
 
 const App = (props) => {
     return (
       <div className="app-container">
         <h1 index="title-main">Math Game</h1>
-        <LoginButton />
-        <GameContainer />
+        {props.currentPage === 'login' && 
+          <LoginPage />
+        }
+        {props.currentPage === 'main' && 
+          <MainPage />
+        }
       </div>
     )
 }
 
-export default App;
+export default connect(mapStateToProps, null)(App);
