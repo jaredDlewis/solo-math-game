@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 // Handle signup requests
-app.post('/signup', userController.createUser, (req, res) => {
+app.post('/signup', userController.getAllUsernames, userController.createUser, (req, res) => {
   // what should happen here on successful sign up?
   return res.status(200).send();
 })

@@ -4,7 +4,28 @@ const bcrypt = require('bcryptjs');
 
 const userController = {};
 
+userController.getAllUsernames = (req, res, next) => {
+  const queryStr = 'SELECT username FROM users;';
+  db.query(queryStr)
+    .then((results) => {
+      res.locals.allUsernames = results.rows;
+      return next();
+    })
+    .catch((err) => next({
+      log: `ERROR: Error in userController.getAllUsers: ${err}`,
+      message: { err: 'userController.getAllUsers: ERROR: Check server logs for details' }
+    }))
+}
+
 userController.createUser = (req, res, next) => {
+  for (const dbUser of res.locals.allUsernames) {
+    if (req.body.username === dbUser.username) {
+      return res.status(409).json('This username is already in use. Please try another.');
+    }
+  }
+  if (!req.body.username || !req.body.password) {
+    return res.status(200).json('Please enter a valid username and password.');
+  }
   bcrypt.hash(req.body.password, SALT_WORK_FACTOR, (err, hash) => {
     if (err) return next('Error in userController: ' + JSON.stringify(err));
     const newUserInfo = [req.body.username, hash];
