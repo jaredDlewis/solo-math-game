@@ -1,12 +1,14 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const userController = require('./controllers/userController.js');
 
 // parse inputs
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(cookieParser());
 
 // send bundle.js
