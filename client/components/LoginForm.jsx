@@ -7,10 +7,10 @@ const LoginForm = (props) => {
 
   function handleClick() {
     const requestBody = {};
-    requestBody.username = document.getElementById('usernameInput').value;
-    requestBody.password = document.getElementById('passwordInput').value;
-    document.getElementById('usernameInput').value = '';
-    document.getElementById('passwordInput').value = '';
+    requestBody.username = document.getElementById('LoginUsernameInput').value;
+    requestBody.password = document.getElementById('LoginPasswordInput').value;
+    document.getElementById('LoginUsernameInput').value = '';
+    document.getElementById('LoginPasswordInput').value = '';
     fetch('/login', {
       method: 'POST',
       headers: {
@@ -18,8 +18,12 @@ const LoginForm = (props) => {
       },
       body: JSON.stringify(requestBody)
     })
+      .then((response) => response.json())
       .then((response) => {
-        console.log('response: ', response.json());
+        if (typeof response === 'object') {
+          props.setHighScore(response.highScore);
+          props.setUsername(response.username);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -29,8 +33,8 @@ const LoginForm = (props) => {
   return (
     <div>
       Login<br></br>
-      <input className="inputBox" id='usernameInput' placeholder="username" type='text' onKeyDown={textEnterHandler}></input>
-      <input className="inputBox" id='passwordInput' placeholder="password" type='password' onKeyDown={textEnterHandler}></input>
+      <input className="inputBox" id='LoginUsernameInput' placeholder="username" type='text' onKeyDown={textEnterHandler}></input>
+      <input className="inputBox" id='LoginPasswordInput' placeholder="password" type='password' onKeyDown={textEnterHandler}></input>
       <button type='button' onClick={handleClick}>Login</button>
     </div>
   )

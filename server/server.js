@@ -20,15 +20,31 @@ app.get('/', (req, res) => {
 });
 
 // Handle signup requests
-app.post('/signup', userController.getAllUsernames, userController.createUser, (req, res) => {
-  // what should happen here on successful sign up?
-  return res.status(200).send();
+app.post('/signup', userController.getAllUsernames, userController.createUser, userController.getUserInfo, (req, res) => {
+  let responseToClient;
+  if (res.locals.createUserResponse) {
+    responseToClient = res.locals.createUserResponse;
+  } else {
+    responseToClient = {
+      username: res.locals.user[0].username,
+      highScore: res.locals.user[0].high_score
+    };
+  }
+  return res.status(200).json(responseToClient);
 })
 
 // Handle login requests
-app.post('/login', userController.verifyUser, (req, res) => {
-  // what should happen here on successful log in?
-  return res.status(200).json(res.locals.verifyResponse)
+app.post('/login', userController.getUserInfo, userController.verifyUser, (req, res) => {
+  let responseToClient;
+  if (res.locals.verifyResponse) {
+    responseToClient = res.locals.verifyResponse;
+  } else {
+    responseToClient = {
+      username: res.locals.user[0].username,
+      highScore: res.locals.user[0].high_score
+    };
+  }
+  return res.status(200).json(responseToClient);
 });
 
 // Page Not Found
