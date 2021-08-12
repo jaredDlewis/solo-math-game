@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import LoginForm from './LoginForm.jsx';
 import SignUpForm from './SignUpForm.jsx';
 import { connect } from 'react-redux';
@@ -9,19 +9,51 @@ const mapDispatchToProps = dispatch => ({
   setUsernameActionCreator: (username) => dispatch(setUsernameActionCreator(username))
 });
 
-const LoginPage = (props) => {
+
+class LoginPage extends Component {
+  constructor(props) {
+    super(props);
+    this.loginSignupFunc = this.loginSignupFunc.bind(this);
+  }
+  
+  loginSignupFunc(loginOrSignup) {
+    const requestBody = {};
+    requestBody.username = document.getElementById(`${loginOrSignup}UsernameInput`).value;
+    requestBody.password = document.getElementById(`${loginOrSignup}PasswordInput`).value;
+    document.getElementById(`${loginOrSignup}UsernameInput`).value = '';
+    document.getElementById(`${loginOrSignup}PasswordInput`).value = '';
+    fetch(`/${loginOrSignup}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBody)
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (typeof response === 'object') {
+          this.props.setHighScoreActionCreator(response.highScore);
+          this.props.setUsernameActionCreator(response.username);
+          
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+  
+  render() {
     return (
       <div>
         <LoginForm 
-          setHighScore={props.setHighScoreActionCreator} 
-          setUsername={props.setUsernameActionCreator}
+          loginSignupFunc={this.loginSignupFunc}
         />
         <SignUpForm 
-          setHighScore={props.setHighScoreActionCreator} 
-          setUsername={props.setUsernameActionCreator}
+          loginSignupFunc={this.loginSignupFunc}
         />
       </div>
-    )
+    );
+  }
 }
 
 export default connect(null, mapDispatchToProps)(LoginPage);
