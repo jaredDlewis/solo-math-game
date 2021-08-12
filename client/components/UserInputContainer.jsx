@@ -19,20 +19,15 @@ const UserInputContainer = (props) => {
     props.generateProblemActionCreator();
     return;
   }
-  if (props.secondNumber) {
-    return (
-      <div>
-        <h4>
-          <input className="inputBox" autoComplete='off' type='text' id='userInput' onKeyDown={textEnterHandler}></input>
-          <button type='button' onClick={handleClick}>Submit Answer</button>
-        </h4>
-      </div>
-    )
-  } else {
-    return (
-      <div></div>
-    )
-  }
+  
+  return (
+    <div>
+      <h4>
+        <input className="inputBox" autoComplete='off' type='text' id='userInput' onKeyDown={textEnterHandler}></input>
+        <button type='button' onClick={handleClick}>Submit Answer</button>
+      </h4>
+    </div>
+  )
 }
 
 export default UserInputContainer;

@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import LoginForm from './LoginForm.jsx';
 import SignUpForm from './SignUpForm.jsx';
 import { connect } from 'react-redux';
-import { setHighScoreActionCreator, setUsernameActionCreator } from '../actions/actions';
+import { changePageActionCreator, setHighScoreActionCreator, setUsernameActionCreator } from '../actions/actions';
 
 const mapDispatchToProps = dispatch => ({
   setHighScoreActionCreator: (highScore) => dispatch(setHighScoreActionCreator(highScore)),
-  setUsernameActionCreator: (username) => dispatch(setUsernameActionCreator(username))
+  setUsernameActionCreator: (username) => dispatch(setUsernameActionCreator(username)),
+  changePageActionCreator: () => dispatch(changePageActionCreator('main'))
 });
 
 
@@ -34,7 +35,7 @@ class LoginPage extends Component {
         if (typeof response === 'object') {
           this.props.setHighScoreActionCreator(response.highScore);
           this.props.setUsernameActionCreator(response.username);
-          
+          this.props.changePageActionCreator();
         }
       })
       .catch((err) => {

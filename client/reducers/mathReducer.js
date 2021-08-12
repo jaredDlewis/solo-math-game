@@ -3,7 +3,6 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   firstNumber: null,
   secondNumber: null,
-  answer: null,
   score: 0,
   gameMessage: 'Submit Answer Below',
 };
@@ -13,7 +12,6 @@ const mathReducer = (state = initialState, action) => {
   let secondNumber;
   let score;
   let gameMessage;
-  let currentPage;
 
   switch (action.type) {
     case types.GENERATE_PROBLEM: {

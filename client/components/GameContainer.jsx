@@ -26,18 +26,21 @@ const GameContainer = (props) => {
     <div>
       {/* ScoreDisplay */}
       <button onClick={props.generateProblemActionCreator}>Generate Problem</button>
-      <ProblemDisplay 
-        firstNumber={props.firstNumber} 
-        secondNumber={props.secondNumber}
-        gameMessage={props.gameMessage}
-      />
-      <UserInputContainer
-        firstNumber={props.firstNumber} 
-        secondNumber={props.secondNumber}
-        addToScoreActionCreator={props.addToScoreActionCreator} 
-        generateProblemActionCreator={props.generateProblemActionCreator}
-        respondToSubmissionActionCreator={props.respondToSubmissionActionCreator}
-      />
+      {props.secondNumber !== null && 
+        <div>
+          <ProblemDisplay 
+            firstNumber={props.firstNumber} 
+            secondNumber={props.secondNumber}
+            gameMessage={props.gameMessage}
+          />
+          <UserInputContainer
+            firstNumber={props.firstNumber} 
+            secondNumber={props.secondNumber}
+            addToScoreActionCreator={props.addToScoreActionCreator} 
+            generateProblemActionCreator={props.generateProblemActionCreator}
+            respondToSubmissionActionCreator={props.respondToSubmissionActionCreator}
+          />
+        </div>}
     </div>
   )
 }
