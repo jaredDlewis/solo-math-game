@@ -4,6 +4,7 @@ const initialState = {
   firstNumber: null,
   secondNumber: null,
   score: 0,
+  highScore: null,
   gameMessage: 'Submit Answer Below',
 };
 
@@ -11,6 +12,7 @@ const mathReducer = (state = initialState, action) => {
   let firstNumber;
   let secondNumber;
   let score;
+  let highScore;
   let gameMessage;
 
   switch (action.type) {
@@ -25,9 +27,18 @@ const mathReducer = (state = initialState, action) => {
     }
     case types.ADD_TO_SCORE: {
       score = state.score + 1;
+      highScore = (score > state.highScore) ? score : state.highScore;
       return {
         ...state,
-        score
+        score,
+        highScore
+      }
+    }
+    case types.SET_HIGH_SCORE: {
+      highScore = action.payload;
+      return {
+        ...state,
+        highScore
       }
     }
     case types.REPSOND_TO_SUBMISSION: {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { 
   generateProblemActionCreator, 
   addToScoreActionCreator, 
@@ -17,32 +17,41 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   firstNumber: state.math.firstNumber,
   secondNumber: state.math.secondNumber,
-  answer: state.math.answer,
   gameMessage: state.math.gameMessage
 })
 
-const GameContainer = (props) => {
-  return (
-    <div>
-      {/* ScoreDisplay */}
-      <button onClick={props.generateProblemActionCreator}>Generate Problem</button>
-      {props.secondNumber !== null && 
-        <div>
-          <ProblemDisplay 
-            firstNumber={props.firstNumber} 
-            secondNumber={props.secondNumber}
-            gameMessage={props.gameMessage}
-          />
-          <UserInputContainer
-            firstNumber={props.firstNumber} 
-            secondNumber={props.secondNumber}
-            addToScoreActionCreator={props.addToScoreActionCreator} 
-            generateProblemActionCreator={props.generateProblemActionCreator}
-            respondToSubmissionActionCreator={props.respondToSubmissionActionCreator}
-          />
-        </div>}
-    </div>
-  )
+class GameContainer extends Component {
+  constructor(props) {
+    super(props)
+    this.handleStart = this.handleStart.bind(this);
+  }
+
+  handleStart() {
+    this.props.generateProblemActionCreator()
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleStart}>Start</button>
+        {this.props.secondNumber !== null && 
+          <div>
+            <ProblemDisplay 
+              firstNumber={this.props.firstNumber} 
+              secondNumber={this.props.secondNumber}
+              gameMessage={this.props.gameMessage}
+            />
+            <UserInputContainer
+              firstNumber={this.props.firstNumber} 
+              secondNumber={this.props.secondNumber}
+              addToScoreActionCreator={this.props.addToScoreActionCreator} 
+              generateProblemActionCreator={this.props.generateProblemActionCreator}
+              respondToSubmissionActionCreator={this.props.respondToSubmissionActionCreator}
+            />
+          </div>}
+      </div>
+    )
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameContainer);

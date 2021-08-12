@@ -7,7 +7,7 @@ import { changePageActionCreator, setHighScoreActionCreator, setUsernameActionCr
 const mapDispatchToProps = dispatch => ({
   setHighScoreActionCreator: (highScore) => dispatch(setHighScoreActionCreator(highScore)),
   setUsernameActionCreator: (username) => dispatch(setUsernameActionCreator(username)),
-  changePageActionCreator: () => dispatch(changePageActionCreator('main'))
+  changePageActionCreator: () => dispatch(changePageActionCreator('game'))
 });
 
 

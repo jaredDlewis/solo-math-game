@@ -1,6 +1,15 @@
 @import '_header';
 @import '_game';
 
+html {
+  font-size: 5vw;
+}
+
 .inputBox {
   border: 1px solid gray;
+  margin: auto;
+}
+
+.app-container {
+  padding: .5em;
 }
