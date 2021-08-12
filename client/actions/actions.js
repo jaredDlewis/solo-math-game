@@ -29,3 +29,8 @@ export const setUsernameActionCreator = (username) => ({
   type: types.SET_USERNAME,
   payload: username
 });
+
+export const setEndTimeActionCreator = (endTime) => ({
+  type: types.SET_END_TIME,
+  payload: endTime
+});

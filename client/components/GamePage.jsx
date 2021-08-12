@@ -11,6 +11,7 @@ class GamePage extends Component {
     return (
       <div >
         <ScoreDisplay/>
+        {/* Timer */}
         <GameContainer/>
       </div>
     )

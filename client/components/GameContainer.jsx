@@ -3,6 +3,7 @@ import {
   generateProblemActionCreator, 
   addToScoreActionCreator, 
   respondToSubmissionActionCreator,
+  setEndTimeActionCreator
 } from '../actions/actions';
 import { connect } from 'react-redux';
 import ProblemDisplay from './ProblemDisplay.jsx';
@@ -11,7 +12,8 @@ import UserInputContainer from './UserInputContainer.jsx';
 const mapDispatchToProps = dispatch => ({
   generateProblemActionCreator: () => dispatch(generateProblemActionCreator()),
   addToScoreActionCreator: () => dispatch(addToScoreActionCreator()),
-  respondToSubmissionActionCreator: (answerFeedback) => dispatch(respondToSubmissionActionCreator(answerFeedback))
+  respondToSubmissionActionCreator: (answerFeedback) => dispatch(respondToSubmissionActionCreator(answerFeedback)),
+  setEndTimeActionCreator: (endTime) => dispatch(setEndTimeActionCreator(endTime))
 });
 
 const mapStateToProps = state => ({
@@ -22,12 +24,13 @@ const mapStateToProps = state => ({
 
 class GameContainer extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.handleStart = this.handleStart.bind(this);
   }
 
   handleStart() {
-    this.props.generateProblemActionCreator()
+    this.props.generateProblemActionCreator();
+    this.props.setEndTimeActionCreator(+new Date());
   }
 
   render() {

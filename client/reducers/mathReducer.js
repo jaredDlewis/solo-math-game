@@ -5,6 +5,7 @@ const initialState = {
   secondNumber: null,
   score: 0,
   highScore: null,
+  endTime: null,
   gameMessage: 'Submit Answer Below',
 };
 
@@ -14,6 +15,7 @@ const mathReducer = (state = initialState, action) => {
   let score;
   let highScore;
   let gameMessage;
+  let endTime;
 
   switch (action.type) {
     case types.GENERATE_PROBLEM: {
@@ -32,6 +34,13 @@ const mathReducer = (state = initialState, action) => {
         ...state,
         score,
         highScore
+      }
+    }
+    case types.SET_END_TIME: {
+      endTime = action.payload;
+      return {
+        ...state,
+        endTime
       }
     }
     case types.SET_HIGH_SCORE: {

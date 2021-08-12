@@ -4,3 +4,4 @@ export const REPSOND_TO_SUBMISSION = 'REPSOND_TO_SUBMISSION';
 export const CHANGE_PAGE = "CHANGE_PAGE";
 export const SET_HIGH_SCORE = "SET_HIGH_SCORE";
 export const SET_USERNAME = "SET_USERNAME";
+export const SET_END_TIME = "SET_END_TIME";
